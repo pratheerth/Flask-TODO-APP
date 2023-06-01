@@ -103,7 +103,6 @@
                 {% endfor%}-->
                 
                 {% for todo in todo_list %}
-
                     {% if todo['complete'] == False %}
                         <div id = "todoitem">
                         <p id = "{{todo['id']}}">{{todo['title']}}</p>

@@ -7,11 +7,8 @@ app = Flask(__name__)
 db = TinyDB('db.json')
 
 
-
-
 @app.route("/")
 def root():
-    print(db.all())
     todo_list = db.all()
     return render_template('index.html',todo_list=todo_list)
 
@@ -24,33 +21,27 @@ def add():
 
 @app.route("/update",methods=["POST"])
 def update():
-    # update todo
+    #update the todo titel
     todo_db = Query()
-    #todo = db.search(todo_db.id == todo_id)
-    #db.update({"complete": True},todo_db.id == todo_id)
     newTest = request.form.get('inputField')
     todo_id =  request.form.get('hiddenField')
-    print(newTest,type(todo_id))
     db.update({"title": newTest},todo_db.id == int(todo_id))
     return redirect(url_for("root"))
 
 @app.route("/delete/<int:todo_id>")
 def delete(todo_id):
-    # update todo
+    #delete the todo 
     todo_db = Query()
-    #todo = db.search(todo_db.id == todo_id)
     db.remove(todo_db.id == todo_id)
     return redirect(url_for("root"))
 
 @app.route("/complete/<int:todo_id>")
 def complete(todo_id):
+    #mark complete
     todo_db = Query()
-    #todo = db.search(todo_db.id == todo_id)
     db.update({"complete": True},todo_db.id == todo_id)
     return redirect(url_for("root"))
     
 
 if __name__ == '__main__':
     app.run(debug=True)
-    
-    
