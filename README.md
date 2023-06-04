@@ -25,3 +25,5 @@ The app integrates with TinyDB.TinyDB is a lightweight, easy-to-use, and flexibl
 
 4. User-Friendly Interface: 
 The app offers a clean and intuitive user interface, providing a seamless experience for users to interact with their tasks. Tasks are presented in a visually appealing manner, with options to easily update and manage them.
+
+you can read more https://medium.com/@mohammed97ashraf/building-a-flexible-todo-app-with-flask-tinydb-and-w3css-d32509082c3d
