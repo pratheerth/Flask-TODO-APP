@@ -3,7 +3,6 @@ from tinydb import TinyDB, Query
 import random
 
 app = Flask(__name__)
-#createing typedb
 db = TinyDB('db.json')
 
 
@@ -14,14 +13,12 @@ def root():
 
 @app.route("/add",methods=["POST"])
 def add():
-    #add new item
     title = request.form.get("title")
     db.insert({'id':random.randint(0, 1000),'title': title, 'complete': False})
     return redirect(url_for("root"))
 
 @app.route("/update",methods=["POST"])
 def update():
-    #update the todo titel
     todo_db = Query()
     newTest = request.form.get('inputField')
     todo_id =  request.form.get('hiddenField')
@@ -30,14 +27,12 @@ def update():
 
 @app.route("/delete/<int:todo_id>")
 def delete(todo_id):
-    #delete the todo 
     todo_db = Query()
     db.remove(todo_db.id == todo_id)
     return redirect(url_for("root"))
 
 @app.route("/complete/<int:todo_id>")
 def complete(todo_id):
-    #mark complete
     todo_db = Query()
     db.update({"complete": True},todo_db.id == todo_id)
     return redirect(url_for("root"))
