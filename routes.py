@@ -25,13 +25,13 @@ def update():
     db.update({'title': new_text}, todo_db.id == int(todo_id))
     return redirect(url_for('todo.index'))
 
-@bp.route('/delete/<int:todo_id>')
+@bp.route('/delete/<int:todo_id>', methods=['POST'])
 def delete(todo_id):
     todo_db = Query()
     db.remove(todo_db.id == todo_id)
     return redirect(url_for('todo.index'))
 
-@bp.route('/complete/<int:todo_id>')
+@bp.route('/complete/<int:todo_id>', methods=['POST'])
 def complete(todo_id):
     todo_db = Query()
     db.update({'complete': True}, todo_db.id == todo_id)
